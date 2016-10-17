@@ -102,7 +102,6 @@ public class RealmRecyclerView extends FrameLayout {
 
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.rrv_swipe_refresh_layout);
         recyclerView = (RecyclerView) findViewById(R.id.rrv_recycler_view);
-        emptyContentContainer = (ViewStub) findViewById(R.id.rrv_empty_content_container);
 
         swipeRefreshLayout.setEnabled(isRefreshable);
         if (isRefreshable) {
@@ -398,6 +397,7 @@ public class RealmRecyclerView extends FrameLayout {
     public void setEmptyViewId(int id) {
         if (id == 0) return;
         emptyViewId = id;
+        emptyContentContainer = (ViewStub) findViewById(R.id.rrv_empty_content_container);
         emptyContentContainer.setLayoutResource(emptyViewId);
         emptyContentContainer.inflate();
     }
