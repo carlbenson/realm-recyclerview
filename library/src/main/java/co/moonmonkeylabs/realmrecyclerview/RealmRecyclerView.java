@@ -105,17 +105,13 @@ public class RealmRecyclerView extends FrameLayout {
 
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.rrv_swipe_refresh_layout);
         recyclerView = (RecyclerView) findViewById(R.id.rrv_recycler_view);
-        emptyContentContainer = (ViewStub) findViewById(R.id.rrv_empty_content_container);
 
         swipeRefreshLayout.setEnabled(isRefreshable);
         if (isRefreshable) {
             swipeRefreshLayout.setOnRefreshListener(recyclerViewRefreshListener);
         }
 
-        if (emptyViewId != 0) {
-            emptyContentContainer.setLayoutResource(emptyViewId);
-            emptyContentContainer.inflate();
-        }
+        setEmptyViewId(emptyViewId);
 
         if (type == null) {
             throw new IllegalStateException("A type has to be specified via XML attribute");
@@ -410,6 +406,14 @@ public class RealmRecyclerView extends FrameLayout {
     public void setBufferItems(int bufferItems){
         if (bufferItems <= 0) bufferItems = 0;
         this.bufferItems = bufferItems;
+    }
+
+    public void setEmptyViewId(int id) {
+        if (id == 0) return;
+        emptyViewId = id;
+        emptyContentContainer = (ViewStub) findViewById(R.id.rrv_empty_content_container);
+        emptyContentContainer.setLayoutResource(emptyViewId);
+        emptyContentContainer.inflate();
     }
 
     private SwipeRefreshLayout.OnRefreshListener recyclerViewRefreshListener =
