@@ -87,7 +87,7 @@ public abstract class RealmBasedRecyclerViewAdapter
     protected RealmResults<T> realmResults;
     protected List ids;
 
-    private List<RowWrapper> rowWrappers;
+    protected List<RowWrapper> rowWrappers;
 
     private RealmChangeListener<RealmResults<T>> listener;
     private boolean animateResults;
